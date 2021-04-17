@@ -2,6 +2,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Perform k-Means clustering on multilingual string data.')
 req = parser.add_argument_group('Required arguments')
 req.add_argument("-p", "--path", help="path to file of new line delimited strings.", required=True)
+parser.add_argument("-n", "--num", help="Number of clusters to use. Default=10.", type=int, default=10)
 req = parser.parse_args()
 #Text pre-processing
 import nltk
@@ -44,7 +45,7 @@ print("File transformed")
 from sklearn.cluster import KMeans
 from sklearn.cluster import MiniBatchKMeans
 #Optimal clusters found for this set, using elbow and sil methods.
-k=400
+k=req.num
 out = open("./clust" + str(k) + ".txt","w+")
 kmeans = MiniBatchKMeans(n_clusters=k, init='k-means++', n_init=100)
 kmeans.fit(X_transformed)
