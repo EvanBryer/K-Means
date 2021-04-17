@@ -1,7 +1,8 @@
 import argparse
 parser = argparse.ArgumentParser(description='Perform k-Means clustering on multilingual string data.')
-parser.add_argument("path", help="path to file of new line delimited strings.")
-args = parser.parse_args()
+req = parser.add_argument_group('Required arguments')
+req.add_argument("-p", "--path", help="path to file of new line delimited strings.", required=True)
+req = parser.parse_args()
 #Text pre-processing
 import nltk
 from nltk.corpus import stopwords
@@ -32,7 +33,7 @@ def text_process(text):
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-X_train = open(args.path).readlines()
+X_train = open(req.path).readlines()
 print("File opened")
 tfidfconvert = TfidfVectorizer(analyzer=text_process,ngram_range=(1,3)).fit(X_train)
 print("File converted")
