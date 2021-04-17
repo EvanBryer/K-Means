@@ -1,6 +1,6 @@
 import argparse
-parser = argparse.ArgumentParser(description='Perform k-Means clustering on multilingual string data')
-parser.add_argument("path")
+parser = argparse.ArgumentParser(description='Perform k-Means clustering on multilingual string data.')
+parser.add_argument("path", help="path to file of new line delimited strings.")
 args = parser.parse_args()
 #Text pre-processing
 import nltk
